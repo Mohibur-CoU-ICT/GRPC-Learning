@@ -1,6 +1,6 @@
 package com.mohibur.sec01;
 
-import com.mohibur.models.Person;
+import com.mohibur.models.sec01.PersonOuterClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +9,7 @@ public class SimpleProtoDemo {
 
     public static void main(final String[] args) {
 
-        var person = Person.newBuilder().setName("Mohibur").setAge(28).build();
+        var person = PersonOuterClass.Person.newBuilder().setName("Mohibur").setAge(28).build();
 
         log.info("{}", person);
 

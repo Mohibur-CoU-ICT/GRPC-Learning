@@ -3,7 +3,12 @@ syntax = "proto3";
 package sec01;
 option java_package = "com.mohibur.models.sec01";
 
+/**
+Multi line comment
+This is my proto
+ */
 message Person {
-  string name = 1;
+  // single line comment
+  string name = 1; // comments are also allowed here
   int32 age = 2;
 }

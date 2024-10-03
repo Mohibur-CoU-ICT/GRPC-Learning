@@ -9,9 +9,33 @@ public class ProtoDemo {
 
     public static void main(final String[] args) {
 
-        var person = Person.newBuilder().setName("Mohibur from sec 02").setAge(28).build();
+        // create person
+        var person1 = createPerson();
 
-        log.info("{}", person);
+        // create another instance with same values
+        var person2 = createPerson();
 
+        // compare
+        log.info("Equals {}", person1.equals(person2));
+        log.info("== {}", person1 == person2);
+
+        // mutable? No
+        // person1.setName() // because set method is not available
+
+        // create another instance with diff values
+        Person person3 = person1.toBuilder().setName("Mosiur").build();
+
+        // compare
+        log.info("Equals {}", person1.equals(person3));
+        log.info("== {}", person1 == person3);
+
+        // null?
+//        var person4 = person1.toBuilder().setName(null).build(); // will throw null pointer exception
+        var person4 = person1.toBuilder().clearName().build();
+        log.info("person4 {}", person4);
+    }
+
+    private static Person createPerson() {
+        return Person.newBuilder().setName("Mohibur").setAge(28).build();
     }
 }

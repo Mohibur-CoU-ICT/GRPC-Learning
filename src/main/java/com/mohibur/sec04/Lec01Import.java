@@ -15,12 +15,13 @@ public class Lec01Import {
         var car = Car.newBuilder().setBodyStyle(BodyStyle.COUPE).build();
         var person = Person.newBuilder()
                 .setName("mohibur")
-                .setAge(12)
+//                .setAge(12)
                 .setCar(car)
                 .setAddress(address)
                 .build();
 
         log.info("{}", person);
+        log.info("{}", person.hasAge());
 
     }
 }

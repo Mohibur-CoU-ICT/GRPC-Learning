@@ -11,6 +11,12 @@ message Car {
   int32 year = 3;
 }
 
-message Dealer {
-  map<int32, Car> inventory = 1;
+message Cars {
+  repeated Car cars = 1;
 }
+
+message Dealer {
+  map<int32, Cars> inventory = 1;
+}
+
+// Map<Integer, List<Car>>

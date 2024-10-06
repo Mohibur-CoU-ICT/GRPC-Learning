@@ -58,7 +58,7 @@ public class ResponseObserver<T> implements StreamObserver<T> {
         }
     }
 
-    public List<T> getList() {
+    public List<T> getItems() {
         return this.list;
     }
 

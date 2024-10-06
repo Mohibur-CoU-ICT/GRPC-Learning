@@ -1,5 +1,6 @@
 package com.mohibur.test.sec06;
 
+import com.google.protobuf.Empty;
 import com.mohibur.models.sec06.BalanceCheckRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,5 +18,12 @@ public class Lec01UnaryBlockingClientTest extends AbstractTest {
         var balance = this.blockingStub.getAccountBalance(request);
         log.info("unary balance received: {}", balance);
         Assertions.assertEquals(100, balance.getBalance());
+    }
+
+    @Test
+    public void allAccountsTest() {
+        var allAccounts = this.blockingStub.getAllAccounts(Empty.getDefaultInstance());
+        log.info("all accounts size: {}", allAccounts.getAccountsCount());
+        Assertions.assertEquals(10, allAccounts.getAccountsCount());
     }
 }

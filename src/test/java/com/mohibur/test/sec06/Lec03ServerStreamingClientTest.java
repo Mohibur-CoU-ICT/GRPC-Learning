@@ -1,6 +1,8 @@
 package com.mohibur.test.sec06;
 
+import com.mohibur.models.sec06.Money;
 import com.mohibur.models.sec06.WithdrawRequest;
+import com.mohibur.test.common.ResponseObserver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -22,5 +24,19 @@ public class Lec03ServerStreamingClientTest extends AbstractTest {
             count++;
         }
         Assertions.assertEquals(2, count);
+    }
+
+    @Test
+    public void asyncClintWithdrawTest() {
+        var request = WithdrawRequest.newBuilder()
+                .setAccountNumber(2)
+                .setAmount(20)
+                .build();
+        var observer = ResponseObserver.<Money>create();
+        this.stub.withdraw(request, observer);
+        observer.await();
+        Assertions.assertEquals(2, observer.getItems().size());
+        Assertions.assertEquals(10, observer.getItems().getFirst().getAmount());
+        Assertions.assertNull(observer.getThrowable());
     }
 }

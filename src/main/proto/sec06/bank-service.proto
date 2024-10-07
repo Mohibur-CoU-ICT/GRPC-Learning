@@ -35,5 +35,5 @@ service BankService {
   rpc GetAllAccounts(google.protobuf.Empty) returns (AllAccountsResponse);
 
   // streaming
-  rpc Withdraw(WithdrawRequest) returns (Money);
+  rpc Withdraw(WithdrawRequest) returns (stream Money);
 }

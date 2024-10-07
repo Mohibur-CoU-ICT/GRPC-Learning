@@ -5,6 +5,7 @@ import com.google.protobuf.Empty;
 import com.mohibur.models.sec06.*;
 import com.mohibur.models.sec06.BankServiceGrpc;
 import com.mohibur.sec06.repository.AccountRepository;
+import com.mohibur.sec06.requestHandlers.DepositRequestHandler;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,5 +59,10 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
         }
 
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<DepositRequest> deposit(StreamObserver<AccountBalance> responseObserver) {
+        return new DepositRequestHandler();
     }
 }
